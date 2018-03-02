@@ -1,5 +1,10 @@
 var timer = 0;
 var timesUp = 0;
+var correct = 0;
+var incorrect = 0;
+var unchecked = 0;
+var time = 25000;
+
 var questionContainerString = $('.questionContainer')["0"].outerHTML
 // console.log(questionContainerString);
 // this will console.log all changes as they happen
@@ -7,7 +12,6 @@ var startSting = $('#start')["0"].outerHTML
 
 var answers = ['Italy', '13%', 'Lombardis Pizzeria', 'Pepperoni', 'Michelangelo']
 
-var time = 25000;
 
 
 function stoptimer() {
@@ -26,20 +30,27 @@ $('#start').on('click', function () {
 
     timesUp = setTimeout(function () {
         stoptimer()
+        getResults()
     }, 25000)
     $('#finished').on('click', getResults)
 })
-var correct = 0;
 
 function getResults() {
     let pizzaQuestions = $('.pizzaQuestion')
     for (let i = 0; i < pizzaQuestions.length; i++) {
-        if ($(pizzaQuestions[i]).children('input:checked').val() === answers[i]) {
-            console.log('testies')
+        if (!$(pizzaQuestions[i]).children('input:checked').val()) {
+            unchecked++;
+        } else if ($(pizzaQuestions[i]).children('input:checked').val() === answers[i]) {
             correct++;
+        } else {
+            incorrect++;
+
         }
         // console.log($(pizzaQuestions[i]).children('input:checked'))
     }
 
-    $('body div').html('<p> Yay!!! you got ' + correct + ' out of 5 questions !!! </p>');
+    $('body div').html('<p> You got ' + correct + ' correct questions! </p>');
+    $('body div').append('<p> You got ' + incorrect + ' incorrect questions. </p>');
+    $('body div').append('<p>' + unchecked + ' Questions were unanswered </p>');
+
 }
