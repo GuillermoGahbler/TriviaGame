@@ -27,9 +27,19 @@ $('#start').on('click', function () {
     timesUp = setTimeout(function () {
         stoptimer()
     }, 25000)
-
+    $('#finished').on('click', getResults)
 })
+var correct = 0;
 
 function getResults() {
- let pizzaQuestions =  $('.pizzaQuestion')    
+    let pizzaQuestions = $('.pizzaQuestion')
+    for (let i = 0; i < pizzaQuestions.length; i++) {
+        if ($(pizzaQuestions[i]).children('input:checked').val() === answers[i]) {
+            console.log('testies')
+            correct++;
+        }
+        // console.log($(pizzaQuestions[i]).children('input:checked'))
+    }
+
+    $('body div').html('<p> Yay!!! you got ' + correct + ' out of 5 questions !!! </p>');
 }
