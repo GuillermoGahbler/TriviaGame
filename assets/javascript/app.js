@@ -46,7 +46,8 @@ function getResults() {
         }
     }
 
-    $('body div').html('<p> You got ' + correct + ' correct questions! </p>');
+    $('body div').html('<h1>Pizza Trivia Game</h1>');
+    $('body div').append('<p> You got ' + correct + ' correct questions! </p>');
     $('body div').append('<p> You got ' + incorrect + ' incorrect questions. </p>');
     $('body div').append('<p>' + unchecked + ' Questions were unanswered </p>');
 
