@@ -4,14 +4,9 @@ var correct = 0;
 var incorrect = 0;
 var unchecked = 0;
 var time = 25000;
-
+var startString = $('#start')["0"].outerHTML
 var questionContainerString = $('.questionContainer')["0"].outerHTML
-// console.log(questionContainerString);
-// this will console.log all changes as they happen
-var startSting = $('#start')["0"].outerHTML
-
 var answers = ['Italy', '13%', 'Lombardis Pizzeria', 'Pepperoni', 'Michelangelo']
-
 
 
 function stoptimer() {
@@ -20,7 +15,8 @@ function stoptimer() {
 
 }
 
-$('body div').html(startSting)
+$('body div').html(startString)
+
 $('#start').on('click', function () {
     $('body div').html(questionContainerString)
     timer = setInterval(function () {
@@ -35,6 +31,8 @@ $('#start').on('click', function () {
     $('#finished').on('click', getResults)
 })
 
+
+
 function getResults() {
     let pizzaQuestions = $('.pizzaQuestion')
     for (let i = 0; i < pizzaQuestions.length; i++) {
@@ -46,7 +44,6 @@ function getResults() {
             incorrect++;
 
         }
-        // console.log($(pizzaQuestions[i]).children('input:checked'))
     }
 
     $('body div').html('<p> You got ' + correct + ' correct questions! </p>');
